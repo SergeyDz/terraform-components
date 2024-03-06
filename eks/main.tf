@@ -10,17 +10,17 @@ data "aws_vpcs" "vpc" {
   }
 }
 
-# data "aws_subnets" "subnets" {
-#   filter {
-#     name   = "vpc-id"
-#     values = [length(data.aws_vpcs.vpc.ids) > 0 ? data.aws_vpcs.vpc.ids[0] : null]
-#   }
-# }
+data "aws_subnets" "subnets" {
+  filter {
+    name   = "vpc-id"
+    values = [length(data.aws_vpcs.vpc.ids) > 0 ? data.aws_vpcs.vpc.ids[0] : null]
+  }
+}
 
-# data "aws_subnet" "eks_subnets" {
-#   for_each = toset(data.aws_subnets.subnets.ids)
-#   id       = each.value
-# }
+data "aws_subnet" "eks_subnets" {
+  for_each = toset(data.aws_subnets.subnets.ids)
+  id       = each.value
+}
 
 locals {
   name   = format("%s-%s-%s-%s", var.instance, var.stage, var.tenant, var.name)
@@ -55,8 +55,7 @@ module "eks" {
   cluster_endpoint_public_access = true
 
   vpc_id     = local.vpc_id
-  #subnet_ids = data.aws_subnets.subnets.ids
-  subnet_ids = ["subnet-0d656f0fa753ed7b9"]
+  subnet_ids = data.aws_subnets.subnets.ids
 
   eks_managed_node_groups = {
     initial = {
