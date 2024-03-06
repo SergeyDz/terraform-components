@@ -5,8 +5,8 @@ provider "aws" {
 data "aws_availability_zones" "available" {}
 
 locals {
-  name   = format("%s-%s-%s-%s", var.instance, var.stage, var.tenant, basename(path.cwd))
-  path   = format("%s/%s-%s-%s-%s", var.region, var.instance, var.stage, var.tenant, basename(path.cwd))
+  name   = format("%s-%s-%s-%s", var.instance, var.stage, var.tenant, dirname(path.cwd))
+  path   = format("%s/%s-%s-%s-%s", var.region, var.instance, var.stage, var.tenant, dirname(path.cwd))
   azs      = slice(data.aws_availability_zones.available.names, 0, var.max_subnet_count)
 
   tags = {
