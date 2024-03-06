@@ -19,3 +19,10 @@ variable "single_nat_gateway" {
     type = bool
     default     = false
 }
+
+variable "max_subnet_count" {
+    description = "The maximum number of subnets to create"
+    type = number
+    default     = 3
+  
+}
