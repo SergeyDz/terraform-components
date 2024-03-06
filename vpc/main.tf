@@ -12,6 +12,12 @@ locals {
   tags = {
     Owner  = "SergeyDz"
     GithubRepo = "https://github.com/SergeyDz/terraform-components"
+    TF = local.name
+    Instance = var.instance
+    Stage = var.stage
+    Tenant = var.tenant
+    CreatedBy = "Terraform"
+    CreatedeAt = timestamp()
   }
 }
 
