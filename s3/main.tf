@@ -26,8 +26,5 @@ locals {
 
 resource "aws_s3_bucket" "bucket" {
   bucket = local.bucket_name
-  acl    = var.acl
-
-  tags = local.tags
 }
 
