@@ -6,7 +6,7 @@ locals {
   name   = format("%s-%s-%s-%s", var.instance, var.stage, var.tenant, var.name)
   path   = format("%s/%s-%s-%s-%s", var.region, var.instance, var.stage, var.tenant, var.name)
 
-  bucket_name = format("%s-%s-%s-%s-%s", var.instance, var.stage, var.tenant, var.name, var.bucket_name)
+  bucket_name = format("%s-%s-%s-%s-%s", var.instance, var.stage, var.tenant, var.name, var.bucket_name_prefix)
 
   tags = {
     Owner  = "SergeyDz"
@@ -25,7 +25,7 @@ locals {
 ################################################################################
 
 resource "aws_s3_bucket" "bucket" {
-  bucket = var.bucket_name
+  bucket = local.bucket_name
   acl    = var.acl
 
   tags = local.tags
