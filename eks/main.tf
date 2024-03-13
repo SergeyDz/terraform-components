@@ -66,4 +66,6 @@ module "eks" {
       desired_size = 1
     }
   }
+
+  create_kms_key = false
 }
