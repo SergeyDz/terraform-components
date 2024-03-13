@@ -16,19 +16,19 @@ variable "cidr" {
 
 variable "enable_nat_gateway" {
     description = "Should be true if you want to provision NAT Gateways for each of your private networks"
-    type = bool
+    type = string
     default     = true
 }
 
 variable "single_nat_gateway" {
     description = "Should be true if you want to provision a single shared NAT Gateway across all of your private networks"
     type = bool
-    default     = false
+    default  = false
 }
 
 variable "max_subnet_count" {
     description = "The maximum number of subnets to create"
-    type = number
+    type = string
     default     = 3
   
 }
