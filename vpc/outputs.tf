@@ -5,7 +5,3 @@ output "vpc_id" {
 output "vpc_name" {
   value = module.vpc.name
 }
-
-output "vpc_arn" {
-  value = module.vpc.arn
-}
